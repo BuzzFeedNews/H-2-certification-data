@@ -1,0 +1,8 @@
+six
+requests
+lxml
+cssselect
+pandas>=0.17
+xlrd
+namestand
+us
