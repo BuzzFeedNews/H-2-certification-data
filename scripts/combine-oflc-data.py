@@ -115,16 +115,11 @@ def combine(src_dir):
 
     # Classify certifications and expired certifications
     def is_certified(x):
-        return "CERTIF" in x.upper()
+        return "CERTIF" in x
 
-    def is_expired(x):
-        return "EXPIR" in x.upper()
-
+    decisions["case_status"] = decisions["case_status"].fillna("").str.upper()
     decisions["is_certified"] = decisions["case_status"]\
         .apply(is_certified).astype(bool)
-
-    decisions["is_expired"] = decisions["case_status"]\
-        .apply(is_expired).astype(bool)
 
     # Fill in n_certified data, if missing, based on other columns
     decisions["n_certified"] = (decisions["no_workers_certified"]\
@@ -144,21 +139,21 @@ def combine(src_dir):
     ])
 
     core_cols = [
+        "case_no",
         "visa_type",
         "fy",
         "last_event_date",
-        "case_no",
         "case_status",
+        "is_certified",
         "n_certified",
+        "job_title",
         "employer_name",
         "employer_state",
         "employer_city",
         "employer_address_1",
         "employer_address_2",
-        "job_title",
         "agent_name",
-        "is_certified",
-        "is_expired",
+        "organization_flag",
         "is_duplicate",
     ]
     return decisions[core_cols].sort_values([
