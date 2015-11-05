@@ -21,12 +21,17 @@ standardizer = namestand.combine([
     t("last_sig_event", "case_status"),
     t("case_num", "case_no"),
     t("emp_", "employer_"),
-    t("num_aliens", "no_workers_requested"),
-    t("no_workers_requsted", "no_workers_requested"),
+    t("num_aliens", "n_requested"),
+    t("no_workers_requsted", "n_requested"),
+    t("no_workers_requested", "n_requested"),
+    t("no_workers_requested", "n_requested"),
+    t("no_workers_certified", "n_certified"),
     t("npc_submitted_date", "case_received_date"),
     t("att_agent", "agent_attorney"),
     t("att_", "agent_attorney_"),
     t("occ_title", "job_title"),
+    t("alien_work", "worksite"),
+    t("worksite_location", "worksite"),
     t(re.compile("^(agent_attorney_firm|lawfirm_name)$"), "agent_attorney_firm_name"),
 ])
 
@@ -61,6 +66,14 @@ def read_file(path):
     # Note: FY2006 H-2A data has no decision date / last event date.
     if "last_event_date" in renamed.columns:
         renamed["last_event_date"] = renamed["last_event_date"].apply(parse_date)
+    
+    if "worksite_state" not in renamed.columns:
+        renamed["worksite_state"] = None
+    if "worksite_city" not in renamed.columns:
+        renamed["worksite_city"] = None
+
+#    if "organization_flag" not in renamed.columns:
+#        /
 
     renamed["fy"] = get_fy_from_path(path)
     renamed["visa_type"] = get_visa_type_from_path(path)
@@ -82,10 +95,11 @@ def get_state_abbr(x):
 def combine(src_dir):
     # Read in all spreadsheets
     dfs = read_all(src_dir)
-    decisions = pd.concat(dfs)
+    decisions = pd.concat(dfs).reset_index(drop=True)
 
-    # Normalize employer_state to postal abbreviations
+    # Normalize worksite_state and employer_state to postal abbreviations
     decisions["employer_state"] = decisions["employer_state"].apply(get_state_abbr)
+    decisions["worksite_state"] = decisions["worksite_state"].apply(get_state_abbr)
 
     double_colon = r":{2,}"
     end_colon = r"(^:)|(:$)"
@@ -122,8 +136,8 @@ def combine(src_dir):
         .apply(is_certified).astype(bool)
 
     # Fill in n_certified data, if missing, based on other columns
-    decisions["n_certified"] = (decisions["no_workers_certified"]\
-        .fillna(decisions["no_workers_requested"]) * decisions["is_certified"])\
+    decisions["n_certified"] = (decisions["n_certified"]\
+        .fillna(decisions["n_requested"]) * decisions["is_certified"])\
         .fillna(0)\
         .astype(int)
 
@@ -133,10 +147,13 @@ def combine(src_dir):
 
     # If an entry includes one these organization flags,
     # it's a duplicate/umbrella application 
-    decisions["is_duplicate"] = decisions["organization_flag"].isin([
-        "A",
-        "Association - Joint Employer (H-2A Only)"
-    ])
+    decisions.loc[(
+        (decisions["visa_type"] == "H-2A") &
+        (decisions["fy"] >= 2008)
+    ), "is_duplicate"] = (
+        (decisions["organization_flag"].fillna("") == "") &
+        (decisions["visa_type"] == "H-2A")
+    )
 
     core_cols = [
         "case_no",
@@ -146,12 +163,15 @@ def combine(src_dir):
         "case_status",
         "is_certified",
         "n_certified",
+        "n_requested",
         "job_title",
         "employer_name",
         "employer_state",
         "employer_city",
         "employer_address_1",
         "employer_address_2",
+        "worksite_state",
+        "worksite_city",
         "agent_name",
         "organization_flag",
         "is_duplicate",
