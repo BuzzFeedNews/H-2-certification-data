@@ -1,6 +1,6 @@
 # H-2 Visa Certification Decisions
 
-This repository contains [data](data/) tracking the certification decisions for the United States' H-2 visa program.
+This repository contains [data](data/) tracking the companies are approved — “certified” — for a specific number of visas by the U.S. Department of Labor Department for the H-2 visa program.
 
 ## Data Sources
 
@@ -12,7 +12,7 @@ H-2 visas come in two types: H-2A for agricultural workers and H-2B for non-agri
 
 ## Standardized Data
 
-Over the years, the OFLC has slightly changed the H-2 visa decision data it publishes, and the names of various fields. The code in this repository standardizes the field names and other bits of nomenclature. It also standardizes state abbreviations and consolidates information about visa agents. For simplicity's sake, it also ignores some fields. A full list of fields can be found in the raw data, or in the data dictionaries available at the sources above.
+Over the years, the OFLC has slightly changed the H-2 visa decision data it publishes, and the names of various fields. The code in this repository standardizes the field names and other bits of nomenclature. It also standardizes state abbreviations and consolidates information about visa agents __[KT note: what are visa agents? if you're going to mention maybe explain?]__. For simplicity's sake, it also ignores some fields. A full list of fields can be found in the raw data, or in the data dictionaries available at the sources above.
 
 The fields in the standardized data are as follows:
 
@@ -33,7 +33,7 @@ The fields in the standardized data are as follows:
 - `organization_flag`: Various types of organizations — including sole employers, joint employers, and umbrella groups — can apply for visa certifications. This field tracks OFLC's categorizations. Only available for H-2A decisions.
 - `is_duplicate`: `True`/`False`/`null`: This derived value will be `True` if (a) `visa_type` is "H-2A", (b) the `organization_flag` is blank, and (c) comes from fiscal year 2008 or later. H-2A data from FY 2006 and FY 2007 do not contain a `organization_flag` field. For these records, and H-2B records, `is_duplicate` will be `null`.
 
-To download the standardized data, [click here](data/processed/h2-visa-decisions.csv?raw=true).
+To download the standardized data, [click here](data/processed/h2-visa-decisions.csv?raw=true). __KT note: link broken__
 
 ## Reproducing the Data
 
