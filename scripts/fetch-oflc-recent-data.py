@@ -14,7 +14,7 @@ def patiently_get(url):
     wait = 0
     while True:
         try:
-            return requests.get(url)
+            return requests.get(url, verify=False)
         except:
             wait = max(30, (wait or 0.5) * 2)
             time.sleep(wait)
