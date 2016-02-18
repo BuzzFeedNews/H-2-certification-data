@@ -1,14 +1,19 @@
 default:
 	@echo No default target
 
-.PHONY: data/raw data/processed clean
+.PHONY: recent-data archived-data data/raw data/processed clean
 
 data: clean data/raw data/processed
 
-data/raw: scripts/fetch-oflc-recent-data.py scripts/fetch-oflc-archived-data.py
-	mkdir -p $@
-	./scripts/fetch-oflc-recent-data.py $@
-	./scripts/fetch-oflc-archived-data.py $@
+recent-data:
+	mkdir -p data/raw
+	./scripts/fetch-oflc-recent-data.py data/raw
+
+archived-data:
+	mkdir -p data/raw
+	./scripts/fetch-oflc-archived-data.py data/raw
+
+data/raw: recent-data archived-data
 
 data/processed: data/raw scripts/combine-oflc-data.py
 	mkdir -p $@
