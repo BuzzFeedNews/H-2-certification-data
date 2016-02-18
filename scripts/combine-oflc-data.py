@@ -60,6 +60,7 @@ def read_file(path):
 
     renamed = raw.rename(columns=dict(zip(raw.columns, standardizer(raw.columns))))
 
+    renamed = renamed[renamed["case_no"].notnull()].copy()
     renamed["fy"] = get_fy_from_path(path)
     renamed["visa_type"] = get_visa_type_from_path(path)
     return renamed
