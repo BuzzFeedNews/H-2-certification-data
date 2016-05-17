@@ -15,7 +15,7 @@ archived-data:
 
 data/raw: recent-data archived-data
 
-data/processed: data/raw scripts/combine-oflc-data.py
+data/processed: scripts/combine-oflc-data.py
 	mkdir -p $@
 	./scripts/combine-oflc-data.py data/raw > $@/H-2-certification-decisions.csv
 
