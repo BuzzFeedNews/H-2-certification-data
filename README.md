@@ -8,7 +8,7 @@ The [raw data](data/raw) come from the Department of Labor's Office of Foreign L
 
 ## Time-frame
 
-H-2 visas come in two types: H-2A for agricultural workers and H-2B for non-agricultural unskilled workers. The OFLC data source covers __H-2A decisions since FY2006__ and __H-2B decisions since FY2000__. The most recent data, for both visa types, includes data  __through FY2016 Q2__, which concluded on March 31, 2016.
+H-2 visas come in two types: H-2A for agricultural workers and H-2B for non-agricultural unskilled workers. The OFLC data source covers __H-2A decisions since FY2006__ and __H-2B decisions since FY2000__. The most recent data, for both visa types, includes data  __through FY2016 Q3__, which concluded on June 30, 2016.
 
 ## Standardized Data
 
