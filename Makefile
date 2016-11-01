@@ -18,6 +18,7 @@ data/raw: recent-data archived-data
 data/processed: scripts/combine-oflc-data.py
 	mkdir -p $@
 	./scripts/combine-oflc-data.py data/raw > $@/H-2-certification-decisions.csv
+	./scripts/test-processed-data.py
 
 clean:
 	find data/raw -type f -exec rm {} \;
