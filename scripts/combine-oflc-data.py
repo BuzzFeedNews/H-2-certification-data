@@ -25,6 +25,8 @@ standardizer = namestand.combine([
     t("no_workers_requested", "n_requested"),
     t("no_workers_requested", "n_requested"),
     t("no_workers_certified", "n_certified"),
+    t("workers_requested", "n_requested"),
+    t("workers_certified", "n_certified"),
     t("npc_submitted_date", "case_received_date"),
     t("att_agent", "agent_attorney"),
     t("att_", "agent_attorney_"),
