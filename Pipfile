@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+six = "*"
+requests = "*"
+lxml = "*"
+cssselect = "*"
+pandas = ">=0.17"
+xlrd = "*"
+namestand = "*"
+us = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"
