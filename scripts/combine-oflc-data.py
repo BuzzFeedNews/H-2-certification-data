@@ -56,7 +56,7 @@ def parse_date(x):
 
 def read_file(path):
     if path[-3:] == "csv":
-        raw = pd.read_csv(path)
+        raw = pd.read_csv(path, low_memory = False)
     else:
         raw = pd.read_excel(path)
 
@@ -109,6 +109,7 @@ def combine(src_dir):
         "agent_attorney_firm_name",
         "agent_attorney_name",
     ]].fillna("")\
+        .astype(str)\
         .applymap(lambda x: x.strip())\
         .apply(":".join, axis=1)\
         .apply(lambda x: re.sub(double_colon, ":", x))\
