@@ -68,7 +68,8 @@ def read_file(path):
     return renamed
 
 def read_all(src_dir):
-    paths = glob.glob(os.path.join(src_dir, "*"))
+    paths = (p for p in glob.glob(os.path.join(src_dir, "*"))
+        if "Appendix" not in p and "Addendum" not in p )
     dfs = map(read_file, paths)
     return dfs
 
