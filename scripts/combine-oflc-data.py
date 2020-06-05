@@ -20,20 +20,32 @@ standardizer = namestand.combine([
     t("last_sig_event", "case_status"),
     t("case_num", "case_no"),
     t("emp_", "employer_"),
+    t("type_of_employer_application", "organization_flag"),
+
     t("num_aliens", "n_requested"),
+    t("total_workers_requested", "n_requested"),
+    t("total_workers_h_2a_requested", "n_requested"),
+    t("total_workers_h_2b_requested", "n_requested"),
     t("no_workers_requsted", "n_requested"),
     t("no_workers_requested", "n_requested"),
-    t("no_workers_requested", "n_requested"),
-    t("no_workers_certified", "n_certified"),
     t("workers_requested", "n_requested"),
+
+    t("total_workers_certified", "n_certified"),
+    t("total_workers_h_2a_certified", "n_certified"),
+    t("total_workers_h_2b_certified", "n_certified"),
+    t("no_workers_certified", "n_certified"),
     t("workers_certified", "n_certified"),
+
     t("npc_submitted_date", "case_received_date"),
     t("att_agent", "agent_attorney"),
+    t("attorney_agent", "agent_attorney"),
     t("att_", "agent_attorney_"),
+    t("last_name", "last"),
+    t("first_name", "first"),
     t("occ_title", "job_title"),
     t("alien_work", "worksite"),
     t("worksite_location", "worksite"),
-    t(re.compile("^(agent_attorney_firm|lawfirm_name)$"), "agent_attorney_firm_name"),
+    t(re.compile("^(agent_attorney_firm|lawfirm_name|lawfirm_name_business_name)$"), "agent_attorney_firm_name"),
 ])
 
 year_pat = re.compile(r"FY(\d+)")

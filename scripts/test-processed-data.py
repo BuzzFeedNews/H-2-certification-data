@@ -15,4 +15,4 @@ duplicates = oflc[
 
 dupes_by_fy = duplicates["fy"].value_counts()
 print(dupes_by_fy.sort_index())
-assert((dupes_by_fy > 5).sum() == 0)
+assert((dupes_by_fy > 20).sum() == 0)
