@@ -6,7 +6,7 @@ import re
 import time
 
 VISA_TYPES = [ "H[_-]?2[_-]?A", "H[_-]?2[_-]?B" ]
-BASE_URL = "http://www.foreignlaborcert.doleta.gov/performancedata.cfm"
+BASE_URL = "https://www.dol.gov/agencies/eta/foreign-labor/performance"
 
 data_pattern = re.compile(r"/({0})[^/]*xlsx?$".format("|".join(VISA_TYPES)))
 
@@ -14,7 +14,7 @@ def patiently_get(url):
     wait = 0
     while True:
         try:
-            return requests.get(url, verify=False)
+            return requests.get(url)
         except:
             wait = max(30, (wait or 0.5) * 2)
             time.sleep(wait)
