@@ -6,12 +6,13 @@ name = "pypi"
 [packages]
 six = "*"
 requests = "*"
-lxml = "*"
+lxml = ">=4.6.2"
 cssselect = "*"
 pandas = ">=0.17"
 xlrd = "*"
 namestand = "*"
 us = "*"
+openpyxl = "*"
 
 [dev-packages]
 
