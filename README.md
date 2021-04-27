@@ -8,7 +8,7 @@ The [raw data](data/raw) come from the Department of Labor's Office of Foreign L
 
 ## Time-frame
 
-H-2 visas come in two types: H-2A for agricultural workers and H-2B for non-agricultural unskilled workers. The OFLC data source covers __H-2A decisions since FY2006__ and __H-2B decisions since FY2000__. The most recent data, for both visa types, includes data  __through FY2021 Q5__, which concluded on December 31, 2020.
+H-2 visas come in two types: H-2A for agricultural workers and H-2B for non-agricultural unskilled workers. The OFLC data source covers __H-2A decisions since FY2006__ and __H-2B decisions since FY2000__. The most recent data, for both visa types, includes data  __through FY2021 Q2__, which concluded on March 31, 2021.
 
 ## Standardized Data
 
@@ -36,7 +36,7 @@ The fields in the standardized data are as follows:
 - `organization_flag`: Various types of organizations — including sole employers and joint employers — can apply for visa certifications. This field tracks OFLC's categorizations. Only available for H-2A decisions.
 - `is_duplicate`: `True`/`False`/`null`: This derived value will be `True` — indicating that this row corresponds a sub-application of a [joint employer's "master application"](http://www.foreignlaborcert.doleta.gov/h_2a_details.cfm) — if (a) `visa_type` is "H-2A", (b) the `organization_flag` is blank, and (c) comes from fiscal year 2008 or later. H-2A data from FY 2006 and FY 2007 do not contain a `organization_flag` field. For these records, and H-2B records, `is_duplicate` will be `null`.
 
-To download the standardized data, [click here](data/processed/h2-visa-decisions.csv?raw=true).
+To download the standardized data, [click here](raw/master/data/processed/H-2-certification-decisions.csv).
 
 ## Reproducing the Data
 
