@@ -3,7 +3,7 @@ charset-normalizer==2.0.12
 cssselect==1.1.0
 idna==3.3
 jellyfish==0.6.1
-lxml==4.8.0
+lxml==4.9.1
 namestand==0.1.1
 numpy==1.22.3
 openpyxl==3.0.9
